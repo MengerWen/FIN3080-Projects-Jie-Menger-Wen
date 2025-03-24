@@ -21,9 +21,9 @@ This assignment focuses on advanced financial econometrics and portfolio constru
 1. **Data Retrieval and P/B Derivation**: Extract monthly stock closing prices and returns (Dec. 2009–Dec. 2024), quarterly ROE-TTM and net assets per share (2009Q3–2024Q4), and daily stock volatility (250-day log-return variance at 2010/12/31). Derive monthly P/B ratios (closing price divided by latest net assets per share) and apply a 5th–95th percentile filter to exclude outliers.
 
 2. **Cross-Sectional Regression**: For December 2010, estimate a cross-sectional OLS regression of P/B ratios on ROE-TTM (2010Q4) and stock volatility (2010/12/31):
-   - \( P/B_i = \alpha + \beta_1 ROE_i + \beta_2 \text{Stock Volatility}_i + \epsilon_i \).
+   - $P/B_i = \alpha + \beta_1 ROE_i + \beta_2 \text{Stock Volatility}_i + \epsilon_i$.
    - Report coefficients, statistical significance, and interpret economic implications (e.g., value relevance of profitability and risk).
 
 3. **Decile Portfolio Construction and Performance**: For each month (Jan. 2010–Dec. 2024), sort firms by prior-month P/B ratios into deciles, forming ten equal-weighted portfolios rebalanced monthly. Compute monthly portfolio returns:
-   - \( r_{i,t}^p = \frac{1}{N_{i,t}} \sum_{j=1}^{N_{i,t}} r_{j,t}^s \), where \( r_{j,t}^s \) is the stock return and \( N_{i,t} \) is the number of stocks in decile \( i \).
+   - $r_{i,t}^p = \frac{1}{N_{i,t}} \sum_{j=1}^{N_{i,t}} r_{j,t}^s$, where $r_{j,t}^s$ is the stock return and $N_{i,t}$ is the number of stocks in decile $i$.
    - Visualize average returns across the ten portfolios via a bar chart and analyze return patterns (e.g., value vs. growth effects).
