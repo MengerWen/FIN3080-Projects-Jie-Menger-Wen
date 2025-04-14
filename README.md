@@ -2,71 +2,31 @@ Here are all the codes and reports of my Projects in the FIN3080 course. All Pro
 
 The FIN3080 assignments require a blend of financial econometrics and data science skills applied to CSMAR-sourced A-share market data.
 # Project 1
+This assignment mandates a comprehensive empirical analysis of A-share market firms listed on the main board (including SME) and GEM board (ChiNext and STAR) using the CSMAR database. The tasks require:
 
-## Overview
-This assignment mandates a comprehensive empirical analysis of financial data from the China Stock Market & Accounting Research (CSMAR) database, focusing on A-share listed firms. It requires students to extract, process, and analyze multi-frequency financial data (monthly stock metrics and quarterly accounting indicators) to compute valuation ratios, generate summary statistics, and perform time-series analysis. The tasks emphasize proficiency in data wrangling, statistical summarization, and financial interpretation.
+1. **Data Extraction and Ratio Computation**: Retrieve longitudinal data spanning January 2000 to September 2023 (monthly stock prices, returns, market value of tradable shares) and 2000Q1 to 2023Q3 (quarterly financial metrics: total assets, liabilities, EPS, ROA, ROE, R&D expenses, plus establishment date and market type). Compute:
+	- Monthly P/E (price-to-earnings) and P/B (price-to-book) ratios using the latest quarterly accounting data aligned with monthly closing prices.
+	- Quarterly R&D expense-to-total asset ratios and firm age (time elapsed since establishment).
 
-## Q1: Data Extraction and Ratio Computation
-- **Data Requirements**: Students must access CSMAR’s Stock Trading, Financial Statements, and Financial Indicators databases to retrieve:
-  - **Monthly Data (Jan 2000–Sep 2023)**: Stock prices, stock returns, and market value of tradable shares for all A-share firms.
-  - **Quarterly Data (2000Q1–2023Q3)**: Total assets, total liabilities, earnings per share (EPS), return on assets (ROA), return on equity (ROE), and R&D expenses.
-  - **Static Data**: Establishment date and market type (main board vs. GEM board, where main board includes SME, and GEM includes ChiNext and STAR).
-- **Task (a) – Ratio Calculation**:
-  - Compute **monthly P/E ratios** as $P/E_{i,t} = \frac{\text{Closing Price}_{i,t}}{\text{EPS}_{i,q}}$, aligning monthly prices with the most recent quarterly EPS.
-  - Compute **monthly P/B ratios** as $P/B_{i,t} = \frac{\text{Closing Price}_{i,t}}{\text{Book Value per Share}_{i,q}}$, where book value per share is derived from total assets minus total liabilities divided by total shares outstanding, using the latest quarterly data.
-  - Compute **quarterly R&D expense/total asset ratios** as $\frac{\text{R&D Expenses}_{i,q}}{\text{Total Assets}_{i,q}}$.
-  - Compute **quarterly firm ages** as the time difference (in years or quarters) between the current date and the establishment date.
-- **Task (b) – Summary Statistics**:
-  - Generate descriptive statistics (number of observations, mean, median, 25th percentile, 75th percentile, standard deviation) for monthly stock returns, P/E ratios, P/B ratios, and quarterly ROA, ROE, R&D expense/total asset ratios, and firm ages.
-  - Segment the statistics by market type (main board vs. GEM board).
-  - Conduct a comparative analysis of the distributional properties across markets, discussing implications for market efficiency, firm profitability, and investment characteristics.
+2. **Descriptive Statistics and Comparative Analysis**: Generate summary statistics (N, mean, median, 25th/75th percentiles, standard deviation) for stock returns, P/E, P/B, ROA, ROE, R&D expense ratios, and firm ages, segmented by market type. Conduct a comparative evaluation of these metrics across the main board and GEM board, discussing heterogeneity and trends.
 
-## Q2: Time-Series Analysis and Investment Strategy
-- **Data Utilization**: Leverage the computed P/E ratios from Problem 1.
-- **Task**:
-  - Construct two time-series of median P/E ratios by market type (main board vs. GEM) from Jan 2000 to Sep 2023 and plot them.
-  - **Analysis (i)**: Evaluate the investment attractiveness of each market as of Sep 2023, considering the P/E trends (e.g., overvaluation signals if P/E is elevated relative to historical norms).
-  - **Analysis (ii)**: Propose a trading strategy using index ETFs (e.g., CSI 300 for main board, ChiNext Index for GEM) based on P/E dynamics, such as a momentum or mean-reversion approach (e.g., shorting high P/E markets and longing low P/E markets).
+3. **Time-Series Visualization and Investment Strategy**: Construct and plot median P/E ratio time-series by market type from 2000 to September 2023. Assess:
+	- Investment viability in each market as of September 2023 based on P/E dynamics.
+	- Formulate a trading strategy leveraging index ETFs, exploiting observed P/E patterns.
 
-## Q3: Longitudinal Performance Analysis
-- **Data**: Use the provided `problem3_data.csv` containing annual ROE and total revenue for main board firms (excluding financials) from 2011 to 2020.
-- **Task**:
-  - Calculate **annual median ROE** and **total revenue growth rate** (defined as $\frac{\text{Total Revenue}_t - \text{Total Revenue}_{t-1}}{\text{Total Revenue}_{t-1}}$) for each year.
-  - For each metric, compute the percentage of firms consistently exceeding the annual median from 2011 onward (e.g., in 2012, firms above median in both 2011 and 2012; in 2013, firms above median in 2011–2013, etc.).
-  - Plot two decaying time-series showing these percentages for ROE and revenue growth rate.
-- **Interpretation**: Discuss the persistence of outperformance and implications for firm quality or market competition.
+4. **Longitudinal Performance Tracking**: Using provided data (problem3_data.csv) for main board firms (2011–2020, excluding financials), compute annual median ROE and total revenue growth rates. Plot decaying time-series of the percentage of firms consistently exceeding these medians over the period, reflecting survivorship and performance persistence.
 # Project 2
-## Overview
-This assignment extends the empirical analysis to a longer horizon (2009–2024) and introduces cross-sectional regression and portfolio construction. It requires advanced statistical modeling and portfolio performance evaluation using CSMAR data, with a focus on P/B ratios as a valuation metric.
+This assignment focuses on advanced financial econometrics and portfolio construction for A-share market firms over December 2009 to December 2024 utilizing CSMAR data. The requirements are:
 
-## Data Extraction and Preprocessing
-- **Data Requirements**:
-  - **Monthly Data (Dec 2009–Dec 2024)**: Stock closing prices and returns (without cash dividend reinvestment) from the Individual Stock Trading table.
-  - **Quarterly Data (2009Q3–2024Q4)**: ROE-TTM (trailing twelve months) and net assets per share from the Financial Indicator table.
-  - **Daily Data (Dec 31, 2010)**: Stock volatility (250-day log return volatility) from the Stock Market Derivative Index table.
-- **P/B Ratio Derivation**: Compute monthly P/B ratios as $P/B_{i,t} = \frac{\text{Closing Price}_{i,t}}{\text{Net Assets per Share}_{i,q}}$ from Jan 2010 to Dec 2024, using the latest quarterly net assets per share. Exclude outliers by trimming P/B ratios below the 5th percentile or above the 95th percentile.
+1. **Data Retrieval and P/B Derivation**: Extract monthly stock closing prices and returns (Dec. 2009–Dec. 2024), quarterly ROE-TTM and net assets per share (2009Q3–2024Q4), and daily stock volatility (250-day log-return variance at 2010/12/31). Derive monthly P/B ratios (closing price divided by latest net assets per share) and apply a 5th–95th percentile filter to exclude outliers.
 
-## Q1: Cross-Sectional Regression
-- **Task**: For all A-share firms at Dec 2010, estimate the cross-sectional regression:
-  $$
-  P/B_i = \alpha + \beta_1 \text{ROE}_i + \beta_2 \text{Stock Volatility}_i + \epsilon_i
-  $$
-  where:
-  - $P/B_i$: P/B ratio at Dec 2010.
-  - $\text{ROE}_i$: ROE-TTM at 2010Q4.
-  - $\text{Stock Volatility}_i$: 250-day volatility at Dec 31, 2010.
-- **Deliverables**: Report coefficients ($\alpha, \beta_1, \beta_2$), standard errors, t-statistics, R-squared, and interpret the economic significance (e.g., whether higher ROE or volatility drives P/B ratios).
+2. **Cross-Sectional Regression**: For December 2010, estimate a cross-sectional OLS regression of P/B ratios on ROE-TTM (2010Q4) and stock volatility (2010/12/31):
+   - $P/B_i = \alpha + \beta_1 ROE_i + \beta_2 \text{Stock Volatility}_i + \epsilon_i$.
+   - Report coefficients, statistical significance, and interpret economic implications (e.g., value relevance of profitability and risk).
 
-## Q2: Portfolio Construction and Performance
-- **Task**:
-  - For each month from Jan 2010 to Dec 2024, sort firms by prior-month P/B ratios and form ten equal-weighted portfolios based on deciles (D0 to D10, where D0 is the minimum and D10 the maximum).
-  - Calculate monthly portfolio returns as:
-    $$
-    r_{i,t}^p = \frac{1}{N_{i,t}} \sum_{j=1}^{N_{i,t}} r_{j,t}^s
-    $$
-    where $N_{i,t}$ is the number of stocks in portfolio $i$ at time $t$, and $r_{j,t}^s$ is the monthly return of stock $j$.
-  - Plot a bar chart of average portfolio returns over the period and analyze patterns (e.g., value vs. growth effects).
-- **Interpretation**: Discuss whether low P/B (value) or high P/B (growth) portfolios outperform, linking findings to market efficiency or behavioral finance.
+3. **Decile Portfolio Construction and Performance**: For each month (Jan. 2010–Dec. 2024), sort firms by prior-month P/B ratios into deciles, forming ten equal-weighted portfolios rebalanced monthly. Compute monthly portfolio returns:
+   - $r_{i,t}^p = \frac{1}{N_{i,t}} \sum_{j=1}^{N_{i,t}} r_{j,t}^s$, where $r_{j,t}^s$ is the stock return and $N_{i,t}$ is the number of stocks in decile $i$.
+   - Visualize average returns across the ten portfolios via a bar chart and analyze return patterns (e.g., value vs. growth effects).
 # Project 3
 ## Q1: CSI 300 Index Return Analysis
 
